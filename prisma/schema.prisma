@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://cat:cat@localhost:5431/cat"
+}
+
+model cds_lecture {
+  id                Int       @id @default(autoincrement())
+  lecture_id        Int       @unique()
+  title             String    @db.VarChar(250)
+  date              DateTime? @db.Date
+  corporate_author  String    @db.VarChar(250)
+  abstract          String
+  series            String    @db.VarChar(250)
+  speaker           String[]  @db.VarChar(250)
+  speaker_details   String[]  @db.VarChar(250)
+  event_details     String    @db.VarChar(250)
+  thumbnail_picture String
+  language          String    @db.VarChar(3)
+  subject_category  String    @db.VarChar(250)
+  lecture_note      DateTime? @db.Timestamptz(6)
+  imprint           String    @db.VarChar(250)
+  license           String    @db.VarChar(250)
+  keywords          String[]  @db.VarChar(250)
+  sponsor           String    @db.VarChar(250)
+  files             String[]  @db.VarChar(250)
+  type              String[]  @db.VarChar(250)
+}

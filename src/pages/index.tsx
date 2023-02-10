@@ -1,14 +1,28 @@
-import Head from 'next/head'
-import { Inter } from '@next/font/google'
+import { GetServerSideProps, NextPage } from "next";
+import { LectureProps } from "@/common/interfaces";
 
-const inter = Inter({ subsets: ['latin'] })
+interface HomePagePops {
+  lectures: LectureProps[];
+}
 
-export default function Home() {
+const Home: NextPage<HomePagePops> = ({ lectures }) => {
   return (
     <>
-      <Head>
-      </Head>
-     
+      <div>
+        {lectures.map((item, key) => (
+          <p key={key}>{item.lecture_id}</p>
+        ))}
+      </div>
     </>
-  )
-}
+  );
+};
+export const getServerSideProps: GetServerSideProps<
+  HomePagePops
+> = async () => {
+  const res = await fetch(`http://localhost:3000/api`);
+  const results = await res.json();
+  const lectures = results.results;
+  return { props: { lectures } };
+};
+
+export default Home;
