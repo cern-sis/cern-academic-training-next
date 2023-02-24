@@ -1,7 +1,10 @@
+import { ContextProps } from "@/common/interfaces";
 import { findLectureById } from "../../../api/db_client";
+import {pathOr} from "ramda";
 
-export default async function handler(req, res) {
-  const { id } = req.query;
+export default async function handler(context:ContextProps, res:any ): Promise<void> {
+  const query = context.query;
+  const id = pathOr("", ["id"], query)
   try {
     const lecture = await findLectureById(id);
     lecture

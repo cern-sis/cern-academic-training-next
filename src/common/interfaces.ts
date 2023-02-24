@@ -25,5 +25,6 @@ export interface ContextProps {
   query: QueryProps;
 }
 export interface QueryProps {
-  id: number;
+  id?: number;
+  search?: string;
 }

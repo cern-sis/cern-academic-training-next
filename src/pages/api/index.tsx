@@ -1,6 +1,7 @@
+import { ContextProps } from "@/common/interfaces";
 import { returnLectures } from "../../../api/db_client";
 
-export default async function allLectureshandler(req, res) {
+export default async function allLectureshandler(context:ContextProps, res:any) {
   try {
     const lectures = await returnLectures();
     lectures

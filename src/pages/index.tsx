@@ -10,7 +10,7 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
     <>
       <div>
         {lectures.map((item, key) => (
-          <p key={key}>{item.lecture_id}</p>
+          <p key={key}>{item.id}</p>
         ))}
       </div>
     </>
