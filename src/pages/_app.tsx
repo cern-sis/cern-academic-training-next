@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 import 'antd/dist/reset.css'
+import "@/styles/CernTollBar.css";
 
 import type { AppProps } from 'next/app'
 
