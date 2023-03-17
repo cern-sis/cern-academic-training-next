@@ -5,6 +5,12 @@ const { Item } = Form;
 export const SearchField = () => {
   return (
     <Form
+      id="searchFieldContainer"
+      style={{
+        position: "absolute",
+        zIndex: 1,
+        width: "100%"
+      }}
       onFinish={({ searchValue }) =>
         Router.push(`search?search=${searchValue}?`)
       }

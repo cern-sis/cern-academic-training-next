@@ -14,7 +14,7 @@ interface HomePagePops {
 
 const Home: NextPage<HomePagePops> = ({ lectures }) => {
   return (
-    <Layout className="layout" style={{position: "absolute", top:0, left: 0}}>
+    <Layout className="layout" >
       <Carousel autoplay dots={false}>
         {photos.map((photo) => {
           return (
@@ -26,11 +26,11 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
           );
         })}
       </Carousel>
-      <div>
+      {/* <div>
         {lectures.map((item, key) => (
           <p key={key}>{item.id}</p>
-        ))}
-      </div>
+        ))} */}
+      {/* </div> */}
     </Layout>
   );
 };
