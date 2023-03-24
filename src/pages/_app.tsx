@@ -8,6 +8,7 @@ import type { AppProps } from "next/app";
 import { Layout } from "antd";
 import CernToolBar from "@/components/cernToolbar";
 import { SearchField } from "@/components/searchField";
+import { NavigationButtons } from "@/components/navigationButtons";
 
 export default function App({ Component, pageProps }: AppProps) {
   if (typeof window !== "undefined") {
@@ -17,9 +18,34 @@ export default function App({ Component, pageProps }: AppProps) {
   }
   return (
     <div>
-      <div style={{position: "fixed", width: "100%",  zIndex:1}}>
+      <div
+        style={{
+          position: "fixed",
+          width: "100%",
+          zIndex: 1,
+          paddingRight: 15,
+        }}
+      >
         <CernToolBar />
-        <SearchField />
+        <div
+          style={{
+            justifyContent: "space-evenly",
+            display: "flex",
+            flexWrap: "wrap",
+          }}
+        >
+          <div
+            style={{
+              width: "33%",
+              display: "flex",
+              justifyContent: "flex-end",
+            }}
+          >
+            Cern Acadeic training
+          </div>
+          <SearchField />
+          <NavigationButtons />
+        </div>
       </div>
       <Component {...pageProps} />
     </div>

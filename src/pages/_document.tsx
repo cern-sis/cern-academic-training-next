@@ -1,25 +1,30 @@
-import { Html, Head, Main, NextScript } from "next/document";
+import Document from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
 
-export default function Document() {
-  return (
-    <Html lang="en">
-      <Head/>
-      <style
-        id="holderStyle"
-        dangerouslySetInnerHTML={{
-          __html: `
-      /* https://github.com/ant-design/ant-design/issues/16037#issuecomment-483140458 */
-      /* Not only antd, but also any other style if you want to use ssr. */
-      *, *::before, *::after {
-        transition: none!important;
+export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const sheet = new ServerStyleSheet()
+    const originalRenderPage = ctx.renderPage
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) =>
+            sheet.collectStyles(<App {...props} />),
+        })
+
+      const initialProps = await Document.getInitialProps(ctx)
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
       }
-    `,
-        }}
-      />
-      <body>
-        <Main />
-        <NextScript />
-      </body>
-    </Html>
-  );
+    } finally {
+      sheet.seal()
+    }
+  }
 }
