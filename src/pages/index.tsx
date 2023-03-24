@@ -1,6 +1,6 @@
-import Image from "next/image";
+// import Image from "next/image";
 
-import { Layout, Carousel } from "antd";
+import { Layout, Carousel, Image } from "antd";
 
 import { GetServerSideProps, NextPage } from "next";
 import { LectureProps } from "@/common/interfaces";
@@ -15,14 +15,14 @@ interface HomePagePops {
 const Home: NextPage<HomePagePops> = ({ lectures }) => {
   return (
     <Layout className="layout" >
-      <Carousel autoplay dots={false}>
+      <Carousel autoplay dots={false} style={{width: "100%", background:"pink", zIndex:0, }}>
         {photos.map((photo) => {
           return (
-            <div key={photo.key}>
-              <div className="content">
-                <img alt={photo.alt} src={photo.src} />
-              </div>
-            </div>
+            // <div key={photo.key}>
+            //   <div className="content">
+                <Image  width={"100%"} height={"100%"} key={photo.key} src={photo.src} alt={photo.alt} style={{ top: 0, position: "absolute", height: "100%",  objectFit: "contain"}} />
+            //   </div>
+            // </div>
           );
         })}
       </Carousel>

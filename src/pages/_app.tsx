@@ -16,10 +16,12 @@ export default function App({ Component, pageProps }: AppProps) {
     };
   }
   return (
-    <>
-      <CernToolBar />
-      <SearchField />
+    <div>
+      <div style={{position: "fixed", width: "100%",  zIndex:1}}>
+        <CernToolBar />
+        <SearchField />
+      </div>
       <Component {...pageProps} />
-    </>
+    </div>
   );
 }
