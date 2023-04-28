@@ -1,16 +1,17 @@
 import React from "react";
+import Link  from "next/link";
 import { Typography, Menu } from "antd";
-import Link from "next/link";
+// import "./AT_HEADER.css";
 
 const { Title } = Typography;
 
-export const NavigationButtons = ()=> {
+function MENU() {
 
   return (
     <Menu
-      style={{background: "transparent"}}
       mode="horizontal"
       className="menu"
+      overflowedIndicator={false}
     >
       <Menu.Item className="about-us" key="about-us">
         <Link href="/about-us">
@@ -39,3 +40,4 @@ export const NavigationButtons = ()=> {
   );
 }
 
+export default MENU;
