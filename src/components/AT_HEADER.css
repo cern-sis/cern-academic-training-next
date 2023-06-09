@@ -49,6 +49,7 @@
   color: #fff;
   z-index: 3;
   font: normal normal normal 32px/33px Abolition;
+  width: 100%;
 }
 
 #atc-header h2 {
@@ -57,10 +58,9 @@
 
 .search-input {
   top: 0;
-  left: -20px;
-  width: 100%;
   color: #fff;
   font: normal normal normal 16px/28px Open Sans;
+  border: #fff;
 }
 
 #atc-header .ant-menu > .help-tooltip {
@@ -94,9 +94,9 @@
 }
 
 #atc-header .ant-menu > .search-box {
-  top: 25px;
+  top: 100px;
   height: 40px;
-  width: 100%;
+  /* width: 100%; */
   transition: all 0.5s;
   z-index: 3;
   justify-content: start;
@@ -110,6 +110,7 @@
 #atc-header .ant-menu > .search-box:hover {
   border-bottom: 2px solid rgba(255, 255, 255, 0.692);
   transition: all 0.5s;
+  justify-content: space-between;
 }
 
 #atc-header .ant-menu {
@@ -246,7 +247,7 @@
     padding-right: 100px;
   }
   #atc-header .ant-menu > .search-box {
-    top: -5px;
+    /* top: -5px; */
     width: 100%;
   }
   #atc-header .ant-menu > .search-icon {

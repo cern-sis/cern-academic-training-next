@@ -47,12 +47,12 @@ function AT_HEADER() {
   return (
     <Header id="atc-header">
       <div className={header ? "header active" : "header"}>
-        <Row justify="space-around">
+        <Row justify="end">
           <Col
             xs={{ span: 22, order: 1 }}
             lg={{ span: 7, order: 1 }}
-            className="header-title"
             key="header-title"
+            style={{justifyContent: "flex-end", display:"flex"}}
           >
             <Title>
               <Typography.Link href="/">ACADEMIC TRAINING</Typography.Link>
@@ -62,7 +62,7 @@ function AT_HEADER() {
           <Col
             xs={{ span: 24, order: 3 }}
             lg={{ span: 10, order: 2 }}
-            className="header-search"
+            style={{top: "32px"}}
             key="header-search"
           >
             <SEARCH_BAR />

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import {pathOr} from "ramda";
+import { pathOr } from "ramda";
 // import { useNavigate, useSearchParams } from "react-router-dom";
-import { useRouter } from 'next/navigation';
-import { Input, Button, Menu, Tooltip } from "antd";
+import { useRouter } from "next/navigation";
+import { Input, Button, Menu, Tooltip, Row, Col } from "antd";
 import { SearchOutlined, QuestionCircleOutlined } from "@ant-design/icons";
 // import "./AT_HEADER.css";
 
 function SEARCH_BAR() {
   const router = useRouter();
-  const [searchFieldValue, setSearchFieldValue] = useState("")
-  const query = router.query
+  const [searchFieldValue, setSearchFieldValue] = useState("");
+  const query = router.query;
   const searchValue = pathOr("", ["search"], query) || "";
   var helpText = `
 
@@ -25,41 +25,26 @@ function SEARCH_BAR() {
   const onKeyDown = (ev: any) => {
     const searchValue = ev.target.value;
     if (searchValue) {
-      router.push(`/search/?search=${searchFieldValue}&page=1`)
+      router.push(`/search/?search=${searchFieldValue}&page=1`);
     } else {
-      router.push("/search")
+      router.push("/search");
     }
   };
 
   return (
-    <Menu className="search">
-      <Menu.Item className="search-box" key="input">
+    <Row style={{borderBottom:" 1px solid white"}}>
+      <Col span={20}>
         <Input
           className="search-input"
+          style={{position: "absolute", bottom:"-8px"}}
           bordered={false}
           placeholder="Search a lecture..."
           onPressEnter={onKeyDown}
-          onChange={(e)=> setSearchFieldValue(e.target.value)}
+          onChange={(e) => setSearchFieldValue(e.target.value)}
           defaultValue={searchValue || ""}
         />
-      </Menu.Item>
-
-      <Menu.Item className="search-icon" key="icon">
-        <Button
-          className="search-button"
-          type="primary"
-          style={{
-            backgroundColor: "transparent",
-            border: "none",
-            boxShadow: "none",
-          }}
-          defaultValue={searchValue || ""}
-          onClick={onKeyDown}
-        >
-          <SearchOutlined style={{ color: "white", fontSize: "200%" }} />
-        </Button>
-      </Menu.Item>
-      <Menu.Item className="help-tooltip" key="help">
+      </Col>
+      <Col span={2} style={{display:"flex", justifyContent:"flex-end", alignItems:"center", color:"white"}}>
         <Tooltip
           color="#0033a0"
           key="#0033a0"
@@ -74,8 +59,23 @@ function SEARCH_BAR() {
         >
           <QuestionCircleOutlined />
         </Tooltip>
-      </Menu.Item>
-    </Menu>
+      </Col>
+      <Col span={2} style={{display:"flex", justifyContent:"flex-start", alignItems:"center"}}>
+        <Button
+          className="search-button"
+          type="primary"
+          style={{
+            backgroundColor: "transparent",
+            border: "none",
+            boxShadow: "none",
+          }}
+          defaultValue={searchValue || ""}
+          onClick={onKeyDown}
+        >
+          <SearchOutlined style={{ color: "white", fontSize: "200%" }} />
+        </Button>
+      </Col>
+    </Row>
   );
 }
 

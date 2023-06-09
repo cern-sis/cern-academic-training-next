@@ -77,8 +77,7 @@
 
 #cern-toolbar .ant-menu-item {
   display: block;
-  margin-left: 0.6em;
-  padding: 12px 0;
+  padding: 6px 8px;
 }
 
 #cern-toolbar div.item-list-length,
