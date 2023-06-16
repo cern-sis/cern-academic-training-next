@@ -1,6 +1,5 @@
 import React from "react";
 import { Layout, Typography, Menu, Col, Row } from "antd";
-// import "./CERN_TOOLBAR.css";
 
 const { Header } = Layout;
 const { Title } = Typography;
@@ -12,7 +11,11 @@ function CERN_TOOLBAR() {
         className="toolbar-submenu"
         style={{ justifyContent: "space-between" }}
       >
-        <Col span={12}>
+        <Col
+        xl={{span: 12}}
+        lg={{span: 11}}
+        md={{span: 10}}
+        sm={{span: 9 }}>
           <Title>
             <Typography.Link href="//home.cern" title="CERN">
               CERN
@@ -21,7 +24,10 @@ function CERN_TOOLBAR() {
           </Title>
         </Col>
         <Col
-          span={11}
+          xl={{span: 11}}
+          lg={{span: 10}}
+          md={{span: 9}}
+          sm={{span: 8}}
           style={{ justifyContent: "flex-end", display: "flex" }}
           className="signin cern-account-links"
           key="cern-account-links"
@@ -34,7 +40,10 @@ function CERN_TOOLBAR() {
           </Typography.Link>
         </Col>
         <Col
-          span={1}
+          xl={{span: 1}}
+          lg={{span: 2}}
+          md={{span: 3}}
+          sm={{span: 4}}
           style={{ justifyContent: "flex-end", display: "flex" }}
           className="directory"
           key="directory"

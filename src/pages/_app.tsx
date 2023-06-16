@@ -1,12 +1,12 @@
 // import "@/styles/globals.css";
 import "antd/dist/reset.css";
-import "@/components/AT_HEADER.css";
 import "@/components/CERN_FOOTER.css";
 import "@/components/CERN_TOOLBAR.css";
 import "@/components/LOADING_ICON.css";
 import "@/components/SortMenu.css";
 import "@/components/index.css";
 import "@/styles/App.css";
+import "@/components/AT_HEADER.css";
 
 import type { AppProps } from "next/app";
 import { Layout } from "antd";
@@ -55,4 +55,4 @@ export default function App({ Component, pageProps }: AppProps) {
     </div>
   );
 }
-// 
+//

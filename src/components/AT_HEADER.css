@@ -1,33 +1,33 @@
-.header,
+/* .header,
 .header.active {
   height: 150px;
   transition: all 0.2s;
-}
+} */
 
 .ant-layout-header {
   padding: 0;
 }
 
-.header {
+/* .header {
   width: 100%;
   position: sticky;
   padding-top: 60px;
   background: linear-gradient(180deg, #000d29 0, transparent 100%) no-repeat
     padding-box;
-}
+} */
 
-#atc-header h1,
+/* #atc-header h1,
 #atc-header h2 {
   padding-top: 35px;
   filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.877));
   color: #fff;
-}
+} */
 
-.header.active {
+/* .header.active {
   background: #191919;
-}
+} */
 
-#atc-header {
+/* #atc-header {
   margin-top: -26px;
   z-index: 8;
   width: 100%;
@@ -35,26 +35,26 @@
   position: -webkit-sticky;
   position: sticky;
   top: -26px;
-}
+} */
 
-#atc-header h1 {
+/* #atc-header h1 {
   display: flex;
   justify-content: flex-end;
   padding-right: 80px;
   text-transform: uppercase;
   opacity: 1;
-}
+} */
 
-#atc-header h1 a {
+/* #atc-header h1 a {
   color: #fff;
   z-index: 3;
   font: normal normal normal 32px/33px Abolition;
   width: 100%;
-}
+} */
 
-#atc-header h2 {
+/* #atc-header h2 {
   font: normal normal normal 25px/28px Abolition;
-}
+} */
 
 .search-input {
   top: 0;

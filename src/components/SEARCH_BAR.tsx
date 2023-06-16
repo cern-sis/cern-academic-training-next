@@ -4,7 +4,15 @@ import { pathOr } from "ramda";
 import { useRouter } from "next/navigation";
 import { Input, Button, Menu, Tooltip, Row, Col } from "antd";
 import { SearchOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-// import "./AT_HEADER.css";
+import {
+  StyledInput,
+  StyledHelpWrapper,
+  StyledSearchIconWrapper,
+  StyledSearchIcon,
+  StyledSearchButton,
+  StyledSearchFieldWrapper,
+  StyledSearchInputWrapper
+} from "./styled_search_bar";
 
 function SEARCH_BAR() {
   const router = useRouter();
@@ -32,50 +40,43 @@ function SEARCH_BAR() {
   };
 
   return (
-    <Row style={{borderBottom:" 1px solid white"}}>
-      <Col span={20}>
-        <Input
-          className="search-input"
-          style={{position: "absolute", bottom:"-8px"}}
-          bordered={false}
-          placeholder="Search a lecture..."
-          onPressEnter={onKeyDown}
-          onChange={(e) => setSearchFieldValue(e.target.value)}
-          defaultValue={searchValue || ""}
-        />
-      </Col>
-      <Col span={2} style={{display:"flex", justifyContent:"flex-end", alignItems:"center", color:"white"}}>
-        <Tooltip
-          color="#0033a0"
-          key="#0033a0"
-          placement="bottomRight"
-          title={
-            <span style={{ whiteSpace: "pre-line" }}>
-              <strong>How to search:</strong>
-              {helpText}
-            </span>
-          }
-          arrowPointAtCenter
-        >
-          <QuestionCircleOutlined />
-        </Tooltip>
-      </Col>
-      <Col span={2} style={{display:"flex", justifyContent:"flex-start", alignItems:"center"}}>
-        <Button
-          className="search-button"
-          type="primary"
-          style={{
-            backgroundColor: "transparent",
-            border: "none",
-            boxShadow: "none",
-          }}
-          defaultValue={searchValue || ""}
-          onClick={onKeyDown}
-        >
-          <SearchOutlined style={{ color: "white", fontSize: "200%" }} />
-        </Button>
-      </Col>
-    </Row>
+    <>
+      <StyledSearchFieldWrapper>
+        <StyledSearchInputWrapper span={20}>
+          <StyledInput
+            placeholder="Search a lecture..."
+            bordered={false}
+            onPressEnter={onKeyDown}
+            onChange={(e) => setSearchFieldValue(e.target.value)}
+            defaultValue={searchValue || ""}
+          />
+        </StyledSearchInputWrapper>
+        <StyledHelpWrapper span={2}>
+          <Tooltip
+            key="#0033a0"
+            placement="bottomRight"
+            title={
+              <span style={{ whiteSpace: "pre-line" }}>
+                <strong>How to search:</strong>
+                {helpText}
+              </span>
+            }
+            arrowPointAtCenter
+          >
+            <QuestionCircleOutlined />
+          </Tooltip>
+        </StyledHelpWrapper>
+        </StyledSearchFieldWrapper>
+        <StyledSearchIconWrapper span={2}>
+          <StyledSearchButton
+            type="primary"
+            defaultValue={searchValue || ""}
+            onClick={onKeyDown}
+          >
+            <StyledSearchIcon />
+          </StyledSearchButton>
+        </StyledSearchIconWrapper>
+    </>
   );
 }
 

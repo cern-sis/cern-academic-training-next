@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Layout, Button, Typography, Row, Col, Drawer } from "antd";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 
-// import "./AT_HEADER.css";
 import SEARCH_BAR from "./SEARCH_BAR";
 import MENU from "./MENU";
-
+import {StyledHeader, StyledWrapper, AcademicTrainingColumn} from "./styled_ayt_header"
 const { Header } = Layout;
 const { Title } = Typography;
 
@@ -24,8 +23,9 @@ function AT_HEADER() {
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", changeBackground)
+    window.addEventListener("scroll", changeBackground);
     const changeWidth = () => {
+      console.log(window.innerWidth);
       setScreenWidth(window.innerWidth);
     };
 
@@ -45,14 +45,15 @@ function AT_HEADER() {
   };
 
   return (
-    <Header id="atc-header">
-      <div className={header ? "header active" : "header"}>
+    <StyledHeader>
+      <StyledWrapper active={header}>
         <Row justify="end">
           <Col
             xs={{ span: 22, order: 1 }}
+            md={{span: 14}}
             lg={{ span: 7, order: 1 }}
+            xl={{span: 4}}
             key="header-title"
-            style={{justifyContent: "flex-end", display:"flex"}}
           >
             <Title>
               <Typography.Link href="/">ACADEMIC TRAINING</Typography.Link>
@@ -61,8 +62,9 @@ function AT_HEADER() {
 
           <Col
             xs={{ span: 24, order: 3 }}
+            md={{span: 12, order: 3}}
             lg={{ span: 10, order: 2 }}
-            style={{top: "32px"}}
+            style={{ top: "32px" }}
             key="header-search"
           >
             <SEARCH_BAR />
@@ -70,13 +72,12 @@ function AT_HEADER() {
 
           <Col
             xs={{ span: 2, order: 2 }}
-            lg={{ span: 7, order: 3 }}
+            lg={{ span: 4, order: 3 }}
             className="header-menu"
+
             key="header-menu"
           >
-             <MENU />
-
-            {screenWidth <= 992 && (
+            {screenWidth <= 992 ? (
               <Drawer
                 placement="right"
                 width="300px"
@@ -88,7 +89,9 @@ function AT_HEADER() {
               >
                 <MENU />
               </Drawer>
-             )}
+            ) : (
+              <MENU />
+            )}
 
             <Button
               type="primary"
@@ -103,9 +106,10 @@ function AT_HEADER() {
               <MenuOutlined />
             </Button>
           </Col>
+          <Col xs={{ span: 2, order: 4 }} lg={{ span: 3, order: 4 }}></Col>
         </Row>
-      </div>
-    </Header>
+      </StyledWrapper>
+    </StyledHeader>
   );
 }
 
