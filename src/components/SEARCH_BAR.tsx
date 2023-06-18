@@ -9,10 +9,10 @@ import {
   StyledHelpWrapper,
   StyledSearchIconWrapper,
   StyledSearchIcon,
-  StyledSearchButton,
   StyledSearchFieldWrapper,
-  StyledSearchInputWrapper
+  StyledSearchInputWrapper,
 } from "./styled_search_bar";
+
 
 function SEARCH_BAR() {
   const router = useRouter();
@@ -40,44 +40,51 @@ function SEARCH_BAR() {
   };
 
   return (
-    <>
-      <StyledSearchFieldWrapper>
-        <StyledSearchInputWrapper span={20}>
-          <StyledInput
-            placeholder="Search a lecture..."
-            bordered={false}
-            onPressEnter={onKeyDown}
-            onChange={(e) => setSearchFieldValue(e.target.value)}
-            defaultValue={searchValue || ""}
-          />
-        </StyledSearchInputWrapper>
-        <StyledHelpWrapper span={2}>
-          <Tooltip
-            key="#0033a0"
-            placement="bottomRight"
-            title={
-              <span style={{ whiteSpace: "pre-line" }}>
-                <strong>How to search:</strong>
-                {helpText}
-              </span>
-            }
-            arrowPointAtCenter
-          >
-            <QuestionCircleOutlined />
-          </Tooltip>
-        </StyledHelpWrapper>
-        </StyledSearchFieldWrapper>
-        <StyledSearchIconWrapper span={2}>
-          <StyledSearchButton
-            type="primary"
-            defaultValue={searchValue || ""}
-            onClick={onKeyDown}
-          >
-            <StyledSearchIcon />
-          </StyledSearchButton>
-        </StyledSearchIconWrapper>
-    </>
+    <div style={{ display: "inline-block", width: "100%" }}>
+      <div style={{ width: "100%", display: "inline-block" }}>
+        <StyledInput
+          addonAfter={
+            <SearchBarIconAndHelp
+              helpText={helpText}
+              searchValue={searchValue}
+              onKeyDown={onKeyDown}
+            />
+          }
+          placeholder="Search a lecture..."
+          bordered={false}
+          onPressEnter={onKeyDown}
+          onChange={(e) => setSearchFieldValue(e.target.value)}
+          defaultValue={searchValue || ""}
+          style={{ width: "100%" }}
+        />
+      </div>
+    </div>
   );
 }
 
+const SearchBarIconAndHelp = ({ helpText, searchValue, onKeyDown }: any) => {
+  return (
+    <div style={{display:"flex", justifyContent:"center", alignItems:"center", color: "#fff", border: "none"}}>
+      <Tooltip
+        key="#0033a0"
+        title={
+          <span style={{ whiteSpace: "pre-line" }}>
+            <strong>How to search:</strong>
+            {helpText}
+          </span>
+        }
+        arrowPointAtCenter
+      >
+        <QuestionCircleOutlined />
+      </Tooltip>
+      <Button
+        type="text"
+        defaultValue={searchValue || ""}
+        onClick={onKeyDown}
+      >
+        <StyledSearchIcon />
+      </Button>
+    </div>
+  );
+};
 export default SEARCH_BAR;

@@ -5,7 +5,11 @@ import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 
 import SEARCH_BAR from "./SEARCH_BAR";
 import MENU from "./MENU";
-import {StyledHeader, StyledWrapper, AcademicTrainingColumn} from "./styled_ayt_header"
+import {
+  StyledHeader,
+  StyledWrapper,
+  AcademicTrainingColumn,
+} from "./styled_ayt_header";
 const { Header } = Layout;
 const { Title } = Typography;
 
@@ -46,13 +50,17 @@ function AT_HEADER() {
 
   return (
     <StyledHeader>
-      <StyledWrapper active={header}>
+      <StyledWrapper
+      active={header}>
         <Row justify="end">
+          <Col span={2} style={{ background:"pink", justifyContent: "center", alignItems: "center", display:"flex"}}></Col>
           <Col
-            xs={{ span: 22, order: 1 }}
-            md={{span: 14}}
-            lg={{ span: 7, order: 1 }}
-            xl={{span: 4}}
+            span={4}
+            style={{background:"red"}}
+            // xs={{ span: 22, order: 1 }}
+            // md={{span: 14}}
+            // lg={{ span: 7, order: 1 }}
+            // xl={{span: 4}}
             key="header-title"
           >
             <Title>
@@ -61,23 +69,20 @@ function AT_HEADER() {
           </Col>
 
           <Col
-            xs={{ span: 24, order: 3 }}
-            md={{span: 12, order: 3}}
-            lg={{ span: 10, order: 2 }}
-            style={{ top: "32px" }}
+            span={12}
+            style={{justifyContent: "center", alignItems: "end", display:"flex", padding: "0px 40px 0px 40px"}}
             key="header-search"
           >
+
             <SEARCH_BAR />
           </Col>
-
           <Col
-            xs={{ span: 2, order: 2 }}
-            lg={{ span: 4, order: 3 }}
+            span={6}
             className="header-menu"
-
             key="header-menu"
+            style={{background:"red", justifyContent: "center", alignItems: "center", display:"flex"}}
           >
-            {screenWidth <= 992 ? (
+            {/* {screenWidth <= 992 ? (
               <Drawer
                 placement="right"
                 width="300px"
@@ -86,12 +91,12 @@ function AT_HEADER() {
                 visible={!state.collapsed}
                 destroyOnClose={true}
                 closeIcon={<CloseOutlined style={{ color: "#fff" }} />}
-              >
+              > */}
                 <MENU />
-              </Drawer>
+              {/* </Drawer>
             ) : (
               <MENU />
-            )}
+            )} */}
 
             <Button
               type="primary"
@@ -106,7 +111,6 @@ function AT_HEADER() {
               <MenuOutlined />
             </Button>
           </Col>
-          <Col xs={{ span: 2, order: 4 }} lg={{ span: 3, order: 4 }}></Col>
         </Row>
       </StyledWrapper>
     </StyledHeader>
