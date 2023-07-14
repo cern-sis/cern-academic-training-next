@@ -10,6 +10,7 @@ const Lectures: NextPage<PageProps> = ({ lecture }) => {
     <>
       <p>Lecture id: {lecture.id}</p>
       <p>Lecture: {lecture.title}</p>
+      sjsjs
     </>
   );
 };

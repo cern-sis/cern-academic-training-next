@@ -433,7 +433,7 @@ iframe {
   height: 700px;
 }
 
-.lecture-details h1.ant-typography {
+/* .lecture-details h1.ant-typography {
   margin-top: 0.5em;
   font: normal normal bold 30px/40px Open Sans;
 }
@@ -455,7 +455,7 @@ iframe {
 .lecture-details h4.ant-typography {
   font: normal normal normal 16px/16px Open Sans;
   opacity: 0.6;
-}
+} */
 
 .lecture-details p {
   font: normal normal normal 14px/30px Open Sans;
@@ -485,9 +485,9 @@ iframe {
   padding: 5px 0 40px;
 }
 
-.lecture-details .ant-typography + h4.ant-typography {
+/* .lecture-details .ant-typography + h4.ant-typography {
   margin-top: 0;
-}
+} */
 
 .files .download-title {
   align-items: center;
@@ -639,8 +639,8 @@ iframe {
 .frame #atc-logo,
 .frame h1,
 .layout,
-.lecture-details h1.ant-typography,
-.lecture-details h2.ant-typography,
+/* .lecture-details h1.ant-typography,
+.lecture-details h2.ant-typography, */
 .lecture-details p,
 .photo-carousel img:hover,
 .reveal.active,
@@ -730,10 +730,10 @@ iframe {
 .files .ant-list-item a,
 .frame h1,
 .lecture-details a,
-.lecture-details h1.ant-typography,
+/* .lecture-details h1.ant-typography,
 .lecture-details h2.ant-typography,
 .lecture-details h3.ant-typography,
-.lecture-details h4.ant-typography,
+.lecture-details h4.ant-typography, */
 .lecture-details p,
 .member-card .member-content h2,
 .member-card .member-content h3,
@@ -829,7 +829,7 @@ iframe {
   .video-window iframe {
     height: 300px;
   }
-  .lecture-details h1.ant-typography {
+  /* .lecture-details h1.ant-typography {
     font: normal normal bold 26px/36px Open Sans;
   }
   .lecture-details h3.ant-typography {
@@ -843,7 +843,7 @@ iframe {
   }
   .lecture-details a {
     font: normal normal normal 14px/16px Open Sans;
-  }
+  } */
   .container {
     margin-left: 50px;
     margin-right: 50px;
@@ -1000,9 +1000,9 @@ iframe {
   .video-window iframe {
     height: 180px;
   }
-  .lecture-details h1.ant-typography {
+  /* .lecture-details h1.ant-typography {
     font: normal normal bold 20px/36px Open Sans;
-  }
+  } */
   .frame {
     height: 360px;
   }

@@ -1,14 +1,16 @@
 
 
 import { GetServerSideProps, NextPage } from "next";
+import moment from "moment";
 import Link from 'next/link';
 import { LectureProps } from "@/common/interfaces";
 import { photos } from "@/common/photos";
-
+import styled from 'styled-components'
 
 import React, { Fragment, useEffect, useState } from "react";
 import { Layout, Row, Col, Card, Carousel, Typography, Divider } from "antd";
 // import { Helmet } from "react-helmet";
+import Image from 'next/image'
 
 import AT_HEADER from "@/components/AT_HEADER";
 import CERN_FOOTER from "@/components/CERN_FOOTER";
@@ -24,14 +26,31 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
   useEffect(() => {
     document.title = "Home | CERN Academic Training";
   }, []);
-
   // window.scrollTo(0, 0);
+  const AcademicTrainingCaption = styled(Typography.Link )`
+  color: #fff;
+  font: normal normal normal 32px/33px Abolition;
+  font-size: 100px;
+`
+  interface VideoCaptureProps{
+    name?:boolean;
+    speaker?:boolean;
+  }
+  const VideosCaptions = styled(Typography.Title)<VideoCaptureProps>`
+  color: ${props => props.name ? "#fff !important;" : "#6c7897 !important;"}
+  font-size: 20px !important;
+  text-transform: ${props => props.speaker ?  "uppercase !important;" : "capitalize !important;"}
+  font-weight: ${props => props.speaker ?  "500  !important;" : "300  !important;"}
+  font-size: ${props => !props.name ?  "15px  !important;" : "20px  !important;"}
+  `
+
 
   return (
     <Layout className="layout">
       <CERN_TOOLBAR />
-      <AT_HEADER />
       <Content id="atc-content">
+      <AT_HEADER />
+
         {/* <Helmet>
           <meta name="description" content={HOME_PAGE_METATAG_CONTENT} />
         </Helmet> */}
@@ -57,15 +76,18 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
             <div className="responsive">
               <div className="frame">
                 <div id="atc-logo">
-                  <img
-                    src="academicTrainingLogo.png"
+                  <Image
+                    width={300}
+                    height={114}
+                    src="/academicTrainingLogo.png"
                     alt="Academic Training Logo"
                   />
                 </div>
                 <Title>
-                  <Typography.Link href="/" >
+                  <AcademicTrainingCaption
+                  href="/" >
                     ACADEMIC TRAINING{" "}
-                  </Typography.Link>
+                  </AcademicTrainingCaption>
                 </Title>
               </div>
             </div>
@@ -77,6 +99,7 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
             <Row justify="center" gutter={[16, 42]}>
               {(
                 lectures.map((lecture: any) => {
+                  const formattedDate = moment(lecture.date).format('YYYY-MM-DD');
                   return (
                     <Col
                       key={lecture.lecture_id}
@@ -115,16 +138,16 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
                               className="card-content"
                               hoverable={false}
                             >
-                              <div className="video-content">
-                                <Title level={4}>{lecture.speaker}</Title>
+                              <div >
+                                <VideosCaptions speaker={true} level={1}>{lecture.speaker}</VideosCaptions>
                               </div>
-                              <div className="video-content">
-                                <Title level={2}>{lecture.title}</Title>
+                              <div >
+                                <VideosCaptions name={true} level={1}>{lecture.title}</VideosCaptions>
                               </div>
-                              <div className="video-content">
-                                <Title level={3}>
-                                  Posted on <strong>{lecture.date}</strong>
-                                </Title>
+                              <div>
+                                <VideosCaptions level={1}>
+                                  Posted on <strong>{formattedDate}</strong>
+                                </VideosCaptions>
                               </div>
                             </Card.Grid>
                           </Card>

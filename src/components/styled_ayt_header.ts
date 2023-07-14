@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 import { Layout, Typography, Menu, Col, Row } from "antd";
 
-const { Header } = Layout;
-
-export const StyledHeader = styled(Header)`
+export const StyledHeader = styled.div`
     h1 {
     padding-top: 35px;
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.877));
@@ -29,6 +27,7 @@ export const StyledHeader = styled(Header)`
     }
 
     margin-top: -26px;
+    position: absolute;
     z-index: 8;
     width: 100%;
     background-color: transparent;
@@ -48,7 +47,6 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
     width: 100%;
     position: sticky;
     padding-top: 60px;
-    padding-box;
 `
 
 export const AcademicTrainingColumn = styled(Col)`

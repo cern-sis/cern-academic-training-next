@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Layout, Button, Typography, Row, Col, Drawer } from "antd";
+import { Layout, Button, Typography, Row, Col, Drawer, Input } from "antd";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 
 import SEARCH_BAR from "./SEARCH_BAR";
@@ -57,10 +57,6 @@ function AT_HEADER() {
           <Col
             span={4}
             style={{background:"transparent"}}
-            // xs={{ span: 22, order: 1 }}
-            // md={{span: 14}}
-            // lg={{ span: 7, order: 1 }}
-            // xl={{span: 4}}
             key="header-title"
           >
             <Title>
@@ -70,11 +66,12 @@ function AT_HEADER() {
 
           <Col
             span={12}
-            style={{justifyContent: "center", alignItems: "end", display:"flex", padding: "0px 40px 0px 40px"}}
+            style={{justifyContent: "center", alignItems: "center", display:"flex"}}
             key="header-search"
           >
 
-            <SEARCH_BAR />
+            {/* <SEARCH_BAR /> */}
+            <Input/>
           </Col>
           <Col
             span={6}

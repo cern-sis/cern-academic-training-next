@@ -6,7 +6,6 @@ import "@/components/LOADING_ICON.css";
 import "@/components/SortMenu.css";
 import "@/components/index.css";
 import "@/styles/App.css";
-import "@/components/AT_HEADER.css";
 
 import type { AppProps } from "next/app";
 import { Layout } from "antd";
