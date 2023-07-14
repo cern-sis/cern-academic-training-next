@@ -13,7 +13,7 @@ function MENU() {
       >
         <Link href="/about-us">
           <Title level={2} style={{display: "flex", justifyContent: "center"}}>
-            Aboutt
+            About
           </Title>
         </Link>
       </div>

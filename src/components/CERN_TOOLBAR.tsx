@@ -24,7 +24,7 @@ function CERN_TOOLBAR() {
           </Title>
         </Col>
         <Col
-          xl={{span: 11}}
+          xl={{span: 10}}
           lg={{span: 10}}
           md={{span: 9}}
           sm={{span: 8}}
@@ -40,7 +40,7 @@ function CERN_TOOLBAR() {
           </Typography.Link>
         </Col>
         <Col
-          xl={{span: 1}}
+          xl={{span: 2}}
           lg={{span: 2}}
           md={{span: 3}}
           sm={{span: 4}}
