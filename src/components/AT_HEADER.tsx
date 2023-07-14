@@ -53,10 +53,10 @@ function AT_HEADER() {
       <StyledWrapper
       active={header}>
         <Row justify="end">
-          <Col span={2} style={{ background:"pink", justifyContent: "center", alignItems: "center", display:"flex"}}></Col>
+          <Col span={2} style={{ background:"transparent", justifyContent: "center", alignItems: "center", display:"flex"}}></Col>
           <Col
             span={4}
-            style={{background:"red"}}
+            style={{background:"transparent"}}
             // xs={{ span: 22, order: 1 }}
             // md={{span: 14}}
             // lg={{ span: 7, order: 1 }}
@@ -80,7 +80,7 @@ function AT_HEADER() {
             span={6}
             className="header-menu"
             key="header-menu"
-            style={{background:"red", justifyContent: "center", alignItems: "center", display:"flex"}}
+            style={{background:"transparent", justifyContent: "center", alignItems: "center", display:"flex"}}
           >
             {/* {screenWidth <= 992 ? (
               <Drawer
