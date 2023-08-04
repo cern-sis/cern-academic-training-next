@@ -12,46 +12,37 @@ import { Layout } from "antd";
 import CernToolBar from "@/components/cernToolbar";
 import { SearchField } from "@/components/searchField";
 import { NavigationButtons } from "@/components/navigationButtons";
+import AT_HEADER from "@/components/AT_HEADER";
+import CERN_FOOTER from "@/components/CERN_FOOTER";
+import styled from "styled-components";
+
+const { Header, Content } = Layout;
+
+const StyledContent = styled(Content)`
+  background: linear-gradient(160deg, #0b1117 0, #0033a0 100%) no-repeat
+  padding-box;
+  z-index: -2;
+`
 
 export default function App({ Component, pageProps }: AppProps) {
-  // if (typeof window !== "undefined") {
-  //   window.onload = () => {
-  //     document.getElementById("holderStyle").remove();
-  //   };
-  // }
   return (
     <div>
-      <div
+      <Header
         style={{
-          position: "fixed",
+          position: "relative",
           width: "100%",
+          height: "100%",
           zIndex: 1,
-          paddingRight: 15,
+          padding: "0px 15px 0px 15px",
         }}
       >
         <CernToolBar />
-        <div
-          style={{
-            justifyContent: "space-evenly",
-            display: "flex",
-            flexWrap: "wrap",
-          }}
-        >
-          <div
-            style={{
-              width: "33%",
-              display: "flex",
-              justifyContent: "flex-end",
-            }}
-          >
-            Cern Acadeic training
-          </div>
-          <SearchField />
-          <NavigationButtons />
-        </div>
-      </div>
-      <Component {...pageProps} />
+        <AT_HEADER />
+      </Header>
+      <StyledContent style={{paddingBottom: 40}}>
+        <Component {...pageProps} />
+      </StyledContent>
+      <CERN_FOOTER />
     </div>
   );
 }
-//

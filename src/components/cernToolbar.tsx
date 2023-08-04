@@ -1,12 +1,11 @@
 import React from "react";
-import { Layout, Typography, Button } from "antd";
+import { Typography, Button } from "antd";
 
-const { Header } = Layout;
 const { Title } = Typography;
 
 function CernToolBar() {
   return (
-    <Header id="cern-toolbar" aria-label="CERN Toolbar">
+    <div id="cern-toolbar" aria-label="CERN Toolbar">
       <Title>
         <Typography.Link href="//home.cern" title="CERN" id="cern-link">
           CERN
@@ -33,7 +32,7 @@ function CernToolBar() {
       </Button>
       </div>
 
-    </Header>
+    </div>
   );
 }
 

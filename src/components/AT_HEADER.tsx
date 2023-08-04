@@ -10,7 +10,6 @@ import {
   StyledWrapper,
   AcademicTrainingColumn,
 } from "./styled_ayt_header";
-const { Header } = Layout;
 const { Title } = Typography;
 
 function AT_HEADER() {
@@ -50,10 +49,9 @@ function AT_HEADER() {
 
   return (
     <StyledHeader>
-      <StyledWrapper
-      active={header}>
+      <StyledWrapper active={header} >
         <Row justify="end">
-          <Col span={2} style={{ background:"transparent", justifyContent: "center", alignItems: "center", display:"flex"}}></Col>
+          <Col span={2}/>
           <Col
             span={4}
             style={{background:"transparent"}}

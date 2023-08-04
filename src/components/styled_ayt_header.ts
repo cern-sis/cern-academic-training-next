@@ -32,8 +32,7 @@ export const StyledHeader = styled.div`
     width: 100%;
     background-color: transparent;
     position: -webkit-sticky;
-    position: sticky;
-    top: -26px;
+    position: fixed;
 `
 
 interface StyledWrapperProps{
@@ -42,11 +41,11 @@ interface StyledWrapperProps{
 
 export const StyledWrapper = styled.div<StyledWrapperProps>`
     height: 150px;
-    transition: all 0.2s;
-    background: ${props => props.active ? "#191919;" : "transparent"}
-    width: 100%;
     position: sticky;
     padding-top: 60px;
+    transition: all 0.2s;
+    background: ${props => props.active ? "#191919;" : "transparent"}
+    margin-left: -16px;
 `
 
 export const AcademicTrainingColumn = styled(Col)`

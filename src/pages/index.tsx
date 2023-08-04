@@ -7,14 +7,11 @@ import { LectureProps } from "@/common/interfaces";
 import { photos } from "@/common/photos";
 import styled from 'styled-components'
 
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import { Layout, Row, Col, Card, Carousel, Typography, Divider } from "antd";
 // import { Helmet } from "react-helmet";
 import Image from 'next/image'
 
-import AT_HEADER from "@/components/AT_HEADER";
-import CERN_FOOTER from "@/components/CERN_FOOTER";
-import CERN_TOOLBAR from "@/components/CERN_TOOLBAR";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import SUGGESTION_BOX from "@/components/SUGGESTION_BOX";
 import LOADING_ICON from "@/components/LOADING_ICON";
@@ -27,10 +24,14 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
     document.title = "Home | CERN Academic Training";
   }, []);
   // window.scrollTo(0, 0);
-  const AcademicTrainingCaption = styled(Typography.Link )`
-  color: #fff;
+  const AcademicTrainingCaption = styled(Link)`
+  color: #fff !important;
   font: normal normal normal 32px/33px Abolition;
   font-size: 100px;
+  &:hover: {
+    background-color: #fff;
+  }
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.938));
 `
   interface VideoCaptureProps{
     name?:boolean;
@@ -44,25 +45,91 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
   font-size: ${props => !props.name ?  "15px  !important;" : "20px  !important;"}
   `
 
+  const CarouselImage = styled.img`
+    height: 900px;
+    margin-top: 0;
+    object-fit: cover;
+    object-position: 50% 50%;
+    opacity: 0.9;
+    -webkit-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    -ms-transition: all 1s ease-out;
+    transition: all 0.5s ease-out;
+    width: 100%;
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    &:hover {
+      object-position: 50% 50%;
+      -webkit-transition: all 1s ease;
+      -moz-transition: all 1s ease;
+      -o-transition: all 1s ease;
+      -ms-transition: all 1s ease;
+      transition: all 0.5s ease-in;
+      opacity: 1;
+    };
+}
+  `
+
+interface CaptionFrame{
+  width: number;
+}
+
+const CaptionFrame = styled.div<CaptionFrame>`
+  height: 650px;
+  margin: 3% 25% 3% 25%;
+  width:  50%;
+  border: 2px solid #ffffffab;
+  border-radius: 50px;
+  opacity: 0.9999;
+  display: block;
+  z-index: 0;
+  transition: 1s;
+  float: left;
+  top: 80px;
+  transition: 1s;
+  font: normal normal normal 98px/178px Abolition;
+  letter-spacing: 0;
+  transition: 1s;
+  opacity: 1;
+  position: relative;
+  padding-left: 0.5em;
+`
+
+const MostRecentCaption = styled(Title)`
+    font: normal normal normal 25px/16px Abolition;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 10px #0a152d;
+    opacity: 0.78;
+    color: #fff !important;
+`
+
+const StylesDivider = styled(Divider)
+  const carouselRef = useRef();
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    if (!carouselRef?.current?.clientWidth) {
+      console.log("whatever", carouselRef)
+      return;
+    }
+    console.log(carouselRef?.current?.clientWidth)
+    console.log("whatever", carouselRef)
+    setWidth(carouselRef?.current?.clientWidth);
+  }, [carouselRef?.current?.clientWidth]);
 
   return (
-    <Layout className="layout">
-      <CERN_TOOLBAR />
-      <Content id="atc-content">
-      <AT_HEADER />
-
-        {/* <Helmet>
-          <meta name="description" content={HOME_PAGE_METATAG_CONTENT} />
-        </Helmet> */}
+    <div>
         <Fragment>
-          <div className="carousel-container">
-            <div className="photo-carousel" data-preload>
+          <div ref={carouselRef}>
+            <div style={{height: 0}}  data-preload>
               <Carousel autoplay dots={false} >
                 {photos.map((photo) => {
                   return (
                     <div key={photo.src} className="container-fluid">
                       <div className="content">
-                        <img alt={photo.alt} src={photo.src} />
+                        <CarouselImage alt={photo.alt} src={photo.src} />
                       </div>
                     </div>
                   );
@@ -72,10 +139,9 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
           </div>
         </Fragment>
         <Fragment>
-          <div className="content-lists">
-            <div className="responsive">
-              <div className="frame">
-                <div id="atc-logo">
+          <div>
+              <CaptionFrame width={width}>
+                <div style={{marginTop: "3em", marginLeft: "-0.6em"}}>
                   <Image
                     width={300}
                     height={114}
@@ -83,22 +149,21 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
                     alt="Academic Training Logo"
                   />
                 </div>
-                <Title>
+                <Title type="warning">
                   <AcademicTrainingCaption
                   href="/" >
                     ACADEMIC TRAINING{" "}
                   </AcademicTrainingCaption>
-                </Title>
-              </div>
-            </div>
-            <div className="recent">
-              <Title level={2}>MOST RECENT</Title>
+                  </Title>
+              </CaptionFrame>
+            <div>
+              <MostRecentCaption level={2}>MOST RECENT</MostRecentCaption>
               <Divider className="divider" />
             </div>
             .{" "}
-            <Row justify="center" gutter={[16, 42]}>
+            {/* <Row justify="center" gutter={[16, 42]}>
               {(
-                lectures.map((lecture: any) => {
+                [lectures[0]].map((lecture: any) => {
                   const formattedDate = moment(lecture.date).format('YYYY-MM-DD');
                   return (
                     <Col
@@ -114,27 +179,26 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
                           href={`/lectures/${lecture.lecture_id}`}
                           key={lecture.lecture_id}
                         >
-                          <Card
+                          <VideoCard
                             hoverable
-                            className="video-card"
                             cover={
-                              <img
+                              <AntCardCover
                                 alt="thumbnail"
                                 src={lecture.thumbnail_picture}
                               />
                             }
                           >
-                            <div className="play">
+                            <PlayButton>
                               <PlayCircleOutlined />
-                            </div>
+                            </PlayButton>
 
-                            <div className="duration">
-                              <Title level={5}>
+                            <VideoCardDurationCaption>
+                              <VideoCardDurationTitle level={5}>
                                 {lecture.imprint.split(" - ")[1]}
-                              </Title>
-                            </div>
+                              </VideoCardDurationTitle>
+                            </VideoCardDurationCaption>
 
-                            <Card.Grid
+                            <VideoCardContent
                               className="card-content"
                               hoverable={false}
                             >
@@ -149,25 +213,22 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
                                   Posted on <strong>{formattedDate}</strong>
                                 </VideosCaptions>
                               </div>
-                            </Card.Grid>
-                          </Card>
+                            </VideoCardContent>
+                          </VideoCard>
                         </Link>
                       </nav>
                     </Col>
                   );
                 })
               )}
-            </Row>
+            </Row> */}
           </div>
         </Fragment>
 
         <Fragment>
           <SUGGESTION_BOX />
         </Fragment>
-      </Content>
-
-      <CERN_FOOTER />
-    </Layout>
+    </div>
   );
 }
 
@@ -185,3 +246,77 @@ export const getServerSideProps: GetServerSideProps<
 };
 
 export default Home;
+
+
+const VideoCard = styled(Card)`
+  &&& {
+    border-radius: 5px;
+    height: 200px;
+    object-fit: cover;
+    object-position: 50% 10%;
+    -o-filter: blur(1px);
+    -moz-filter: blur(1px);
+    -ms-filter: blur(1px);
+    filter: brightness(70%);
+    z-index: 2;
+    transition: 0.5s;
+    filter: brightness(100%);
+    transition: all 0.5s;
+    background-color: transparent;
+    border-radius: 5px;
+    min-height: 150px;
+    &:hover{
+      filter: drop-shadow(1px 1px 10px #00194e);
+      font-size: 3.8em;
+      transition: 0.3s;
+      max-height: 10px;
+      transition: 0.5s;
+    }
+  }
+`
+const VideoCardContent = styled(Card.Grid)`
+  padding: 0 0 0 12px;
+  margin-left: -8px;
+  box-shadow: inset 0 0 80px transparent;
+`
+
+const VideoCardDurationCaption = styled.div`
+position: relative;
+bottom: 34px;
+right: 10px;
+float: right;
+background: #191919;
+border-radius: 5px;
+`
+const VideoCardDurationTitle = styled(Title)`
+  font: normal normal normal 13px/14px Open Sans;
+  padding: 4px 5px 0;
+`
+
+const PlayButton = styled.div`
+  width: 1em;
+  font-size: 2.6em;
+  opacity: 0.8;
+  position: absolute;
+  background-color: transparent;
+  top: 10px;
+  left: 20px;
+  transition: 0.3s;
+  filter: drop-shadow(1px 1px 10px #00194e);
+  font-size: 3.8em;
+  transition: 0.3s;
+`
+
+const AntCardCover = styled.img`
+  border-radius: 5px;
+  height: 200px;
+  object-fit: cover;
+  object-position: 50% 10%;
+  -o-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: brightness(70%);
+  z-index: 2;
+  transition: 0.5s;
+  filter: brightness(100%);
+  transition: all 0.5s;`
