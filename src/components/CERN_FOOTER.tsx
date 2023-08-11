@@ -1,14 +1,38 @@
 import React from "react";
 import Link  from "next/link";
 import { Layout, Row, Col, Typography, Menu } from "antd";
-// import "./CERN_FOOTER.css";
+import styled from "styled-components";
 
 const { Footer } = Layout;
 const { Title } = Typography;
 
+const CernFooter = styled(Footer)`
+  background: #191919;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  font-size: 1.8rem;
+  margin: 0;
+  position: relative;
+  padding: 10px 10px 0;
+  z-index: 100;
+  top: -1px;
+  color: #fffeee;
+}
+`
+const CopyWrapper = styled.div`
+  font: normal normal normal 13px/27px Source Sans Pro Light;
+  text-align: center;
+  width: 100%;
+  line-height: 50px;
+  margin: 0;`
+
 function CERN_FOOTER() {
   return (
-    <Footer id="cern-footer">
+    <CernFooter>
       <div className="footer">
         <Row className="row" justify="space-between" gutter={12}>
           <Col
@@ -143,13 +167,13 @@ function CERN_FOOTER() {
         </Row>
       </div>
 
-      <div className="copy-wrapper light">
+      <CopyWrapper>
         <Typography.Link href="https://copyright.web.cern.ch/">
           Copyright
         </Typography.Link>
         &nbsp;&copy; 2022 CERN
-      </div>
-    </Footer>
+      </CopyWrapper>
+    </CernFooter>
   );
 }
 

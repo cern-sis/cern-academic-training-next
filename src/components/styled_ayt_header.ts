@@ -40,12 +40,12 @@ interface StyledWrapperProps{
 }
 
 export const StyledWrapper = styled.div<StyledWrapperProps>`
-    height: 150px;
-    position: sticky;
-    padding-top: 60px;
+    position: fixed;
     transition: all 0.2s;
-    background: ${props => props.active ? "#191919;" : "transparent"}
-    margin-left: -16px;
+    background: ${props => props.active ? "#191919;" : "transparent"};
+    z-index: 3;
+    width: 100%;
+    padding-top: 40px; /*the same as the heigh of the tool bar*/
 `
 
 export const AcademicTrainingColumn = styled(Col)`

@@ -10,7 +10,15 @@ import {
   StyledWrapper,
   AcademicTrainingColumn,
 } from "./styled_ayt_header";
+import styled from "styled-components";
+import Link from "next/link";
 const { Title } = Typography;
+
+const StyledLinks = styled(Link)`
+color: #fff !important;
+font-family: Abolition;
+text-decoration: none;
+`
 
 function AT_HEADER() {
   const [state, setState] = useState({ collapsed: true });
@@ -28,7 +36,6 @@ function AT_HEADER() {
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
     const changeWidth = () => {
-      console.log(window.innerWidth);
       setScreenWidth(window.innerWidth);
     };
 
@@ -48,68 +55,78 @@ function AT_HEADER() {
   };
 
   return (
-    <StyledHeader>
-      <StyledWrapper active={header} >
-        <Row justify="end">
-          <Col span={2}/>
-          <Col
-            span={4}
-            style={{background:"transparent"}}
-            key="header-title"
-          >
-            <Title>
-              <Typography.Link href="/">ACADEMIC TRAINING</Typography.Link>
-            </Title>
+      <StyledWrapper active={header}>
+        <Row
+        gutter={64}
+        style={{background:"transparent",
+        justifyContent: "space-between",
+        alignItems: "center",
+        display:"flex",
+        padding: "0 3%"}}>
+          <Col span={6}>
+            <StyledLinks  href="/">ACADEMIC TRAINING</StyledLinks>
           </Col>
-
-          <Col
-            span={12}
-            style={{justifyContent: "center", alignItems: "center", display:"flex"}}
-            key="header-search"
-          >
-
-            {/* <SEARCH_BAR /> */}
-            <Input/>
-          </Col>
-          <Col
-            span={6}
-            className="header-menu"
-            key="header-menu"
-            style={{background:"transparent", justifyContent: "center", alignItems: "center", display:"flex"}}
-          >
-            {/* {screenWidth <= 992 ? (
-              <Drawer
-                placement="right"
-                width="300px"
-                className="drawer"
-                onClose={toggleCollapsed}
-                visible={!state.collapsed}
-                destroyOnClose={true}
-                closeIcon={<CloseOutlined style={{ color: "#fff" }} />}
-              > */}
-                <MENU />
-              {/* </Drawer>
-            ) : (
-              <MENU />
-            )} */}
-
-            <Button
-              type="primary"
-              className="menu-mobile"
-              onClick={toggleCollapsed}
-              style={{
-                backgroundColor: "transparent",
-                border: "none",
-                fontSize: "200%",
-              }}
-            >
-              <MenuOutlined />
-            </Button>
-          </Col>
+          <Col span={12}><Input/></Col>
+          <Col span={6}><MENU/></Col>
         </Row>
+
       </StyledWrapper>
-    </StyledHeader>
   );
 }
 
 export default AT_HEADER;
+
+{/* <Row justify="end">
+<Col span={2}/>
+<Col
+  span={4}
+  key="header-title"
+>
+    <StyledLinks href="/">ACADEMIC TRAINING</StyledLinks>
+</Col>
+
+<Col
+  span={12}
+  // style={{justifyContent: "center", alignItems: "center", display:"flex"}}
+  key="header-search"
+>
+
+  {/* <SEARCH_BAR /> */}
+  // <Input/>
+// </Col>
+// <Col
+//   span={6}
+//   className="header-menu"
+//   key="header-menu"
+//   style={{background:"transparent", justifyContent: "center", alignItems: "center", display:"flex"}}
+// >
+//   {/* {screenWidth <= 992 ? (
+//     <Drawer
+//       placement="right"
+//       width="300px"
+//       className="drawer"
+//       onClose={toggleCollapsed}
+//       visible={!state.collapsed}
+//       destroyOnClose={true}
+//       closeIcon={<CloseOutlined style={{ color: "#fff" }} />}
+//     > */}
+//       <MENU />
+//     {/* </Drawer>
+//   ) : (
+//     <MENU />
+//   )} */}
+
+//   <Button
+//     type="primary"
+//     className="menu-mobile"
+//     onClick={toggleCollapsed}
+//     style={{
+//       backgroundColor: "transparent",
+//       border: "none",
+//       fontSize: "200%",
+//     }}
+//   >
+//     <MenuOutlined />
+//   </Button>
+// </Col>
+// </Row> */}

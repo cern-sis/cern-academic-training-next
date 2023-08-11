@@ -1,11 +1,7 @@
 // import "@/styles/globals.css";
 import "antd/dist/reset.css";
-import "@/components/CERN_FOOTER.css";
-import "@/components/CERN_TOOLBAR.css";
-import "@/components/LOADING_ICON.css";
-import "@/components/SortMenu.css";
-import "@/components/index.css";
-import "@/styles/App.css";
+import GlobalFonts from '../fonts/fonts';
+
 
 import type { AppProps } from "next/app";
 import { Layout } from "antd";
@@ -22,24 +18,27 @@ const StyledContent = styled(Content)`
   background: linear-gradient(160deg, #0b1117 0, #0033a0 100%) no-repeat
   padding-box;
   z-index: -2;
+  position: relative;
 `
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <div>
+      <GlobalFonts />
       <Header
         style={{
-          position: "relative",
+          display: "flex",
+          flexDirection: "column",
           width: "100%",
           height: "100%",
           zIndex: 1,
-          padding: "0px 15px 0px 15px",
+          padding: "0px 0px",
         }}
       >
         <CernToolBar />
         <AT_HEADER />
       </Header>
-      <StyledContent style={{paddingBottom: 40}}>
+      <StyledContent style={{paddingBottom: 40, zIndex: 2}}>
         <Component {...pageProps} />
       </StyledContent>
       <CERN_FOOTER />

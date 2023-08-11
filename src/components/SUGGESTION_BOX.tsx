@@ -9,17 +9,38 @@ const { Title } = Typography;
 
 const StyledSuggestion = styled.div`
   font: normal normal normal 32px/33px Abolition;
+  width: auto;
+  text-align: center;
+  margin: 0 auto 60px;
+  transition: all 0.5s;
+  transition: transform 0.5s ease-in;
 `
+
+const StyledTitle = styled(Title)`
+  text-align: center;
+  font: normal normal normal 50px/50px Abolition;
+  letter-spacing: 0.5px;
+  color: #fff;
+  opacity: 0.8;
+  margin-left: 20px;
+  margin-right: 20px;
+  line-height: 60px;
+  transition: all 0.5s ease-in;
+  &:hover {
+    opacity: 1;
+    transition: all 0.5s ease-out;
+  }
+  `
 
 function SUGGESTION_BOX() {
   // getReveal();
 
   return (
-    <StyledSuggestion className="suggestion reveal">
+    <StyledSuggestion>
       <Link href="mailto:atc-contact@cern.ch" target="_blank">
-        <Title className="hover-underline-animation">
+        <StyledTitle level={1}>
           Submit a suggestion for future topics
-        </Title>
+        </StyledTitle>
       </Link>
     </StyledSuggestion>
   );
