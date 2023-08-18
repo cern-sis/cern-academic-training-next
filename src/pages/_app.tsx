@@ -11,6 +11,7 @@ import { NavigationButtons } from "@/components/navigationButtons";
 import AT_HEADER from "@/components/AT_HEADER";
 import CERN_FOOTER from "@/components/CERN_FOOTER";
 import styled from "styled-components";
+// import '../global.css'
 
 const { Header, Content } = Layout;
 
@@ -19,29 +20,31 @@ const StyledContent = styled(Content)`
   padding-box;
   z-index: -2;
   position: relative;
+  height: calc(100% - 80px);
 `
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
-    <div>
+    <>
       <GlobalFonts />
       <Header
         style={{
           display: "flex",
           flexDirection: "column",
           width: "100%",
-          height: "100%",
           zIndex: 1,
           padding: "0px 0px",
+          height: "40px",
         }}
-      >
+      >      <GlobalFonts />
+
         <CernToolBar />
         <AT_HEADER />
       </Header>
-      <StyledContent style={{paddingBottom: 40, zIndex: 2}}>
+      <StyledContent style={{zIndex: 2, height: "calc(100vh - 40px)px"}}>
         <Component {...pageProps} />
       </StyledContent>
-      <CERN_FOOTER />
-    </div>
+      {/* <CERN_FOOTER /> */}
+    </>
   );
 }

@@ -43,7 +43,7 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
     position: fixed;
     transition: all 0.2s;
     background: ${props => props.active ? "#191919;" : "transparent"};
-    z-index: 3;
+    z-index: 4;
     width: 100%;
     padding-top: 40px; /*the same as the heigh of the tool bar*/
 `

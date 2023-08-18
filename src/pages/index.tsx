@@ -24,12 +24,13 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
   // window.scrollTo(0, 0);
   const AcademicTrainingCaption = styled(Link)`
     color: #fff !important;
-    font: normal normal normal 32px/33px Abolition;
-    font-size: 100px;
+    font: normal normal normal 14px Abolition;
+    font-size: 60px;
     &:hover: {
       background-color: #fff;
     }
     filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.938));
+    opacity: 1;
   `;
   interface VideoCaptureProps {
     name?: boolean;
@@ -47,7 +48,6 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
   `;
 
   const CarouselImage = styled.img`
-    height: 900px;
     margin-top: 0;
     object-fit: cover;
     object-position: 50% 50%;
@@ -74,24 +74,29 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
   `;
 
   const CaptionFrame = styled.div`
-    height: 650px;
-    margin: 3% 15% 3% 15%;
+    margin: 0% 15% 0% 15%;
     width: 70%; /*small screens*/
     border: 2px solid #ffffffab;
     border-radius: 50px;
     opacity: 0.9999;
-    display: block;
     z-index: 0;
     transition: 1s;
     float: left;
     top: 80px;
+    height: calc(100% - 90px);
     transition: 1s;
     font: normal normal normal 98px/178px Abolition;
     letter-spacing: 0;
     transition: 1s;
-    opacity: 1;
     position: relative;
     padding-left: 0.5em;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: bottom;
+    justify-content: end;
+    padding-bottom: 5%;
+
   `;
 
   const MostRecentCaption = styled(Title)`
@@ -104,15 +109,20 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
 
   const Wrapper = styled.div`
     position: relative;
+    height: 100%;
   `
   const SlideWrapper = styled.div`
     position: absolute;
     z-index: 4;
     width: 100%;
+    display: flex;
+    background: transparent;
+    height: 100%;
+    zIndex: 1;
   `
   const AcademicTrainingDecoration = styled.div`
-    margin-top: 3em;
-    margin-left: -0.6em` // because of too big academic training logo (too wide)
+    // margin-top: 25%;
+    margin-left: -3%` // because of too big academic training logo (too wide); big screen 35 nit 25
 
   const StyledDivider = styled(Divider)`
     background: linear-gradient(-90deg, #ffffffd0 0%, transparent 100%) no-repeat
@@ -140,10 +150,10 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
           </Title>
         </CaptionFrame>
       </SlideWrapper>
-      <Carousel style={{ display: "flex" }} autoplay dots={false}>
+      <Carousel style={{ display: "flex", flexDirection: "column", background: "pink", height: "calc(100vh - 40px)"  }} autoplay dots={false}>
         {photos.map((photo) => {
           return (
-            <div key={photo.src} className="container-fluid">
+            <div key={photo.src}>
               <div className="content">
                 <CarouselImage alt={photo.alt} src={photo.src} />
               </div>
@@ -151,10 +161,10 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
           );
         })}
       </Carousel>
-      <div style={{margin: "3% 15% 3% 15%"}}>
+      {/* <div style={{margin: "3% 15% 3% 15%"}}>
         <MostRecentCaption level={5}>MOST RECENT</MostRecentCaption>
         <StyledDivider />
-      </div>
+      </div> */}
       <Fragment>
         <SUGGESTION_BOX />
       </Fragment>
