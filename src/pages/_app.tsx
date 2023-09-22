@@ -41,7 +41,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <CernToolBar />
         <AT_HEADER />
       </Header>
-      <StyledContent style={{zIndex: 2, height: "calc(100vh - 40px)px"}}>
+      <StyledContent style={{zIndex: 2, height: "calc(100vh - 40px)"}}>
         <Component {...pageProps} />
       </StyledContent>
       {/* <CERN_FOOTER /> */}

@@ -51,27 +51,10 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
     margin-top: 0;
     object-fit: cover;
     object-position: 50% 50%;
+    background-repeat: no-repeat;
     opacity: 0.9;
-    -webkit-transition: all 1s ease-out;
-    -moz-transition: all 1s ease-out;
-    -o-transition: all 1s ease-out;
-    -ms-transition: all 1s ease-out;
-    transition: all 0.5s ease-out;
-    width: 100%;
-    display: flex;
-    margin-left: auto;
-    margin-right: auto;
-    &:hover {
-      object-position: 50% 50%;
-      -webkit-transition: all 1s ease;
-      -moz-transition: all 1s ease;
-      -o-transition: all 1s ease;
-      -ms-transition: all 1s ease;
-      transition: all 0.5s ease-in;
-      opacity: 1;
-    };
-}
-  `;
+  }
+    `;
 
   const CaptionFrame = styled.div`
     margin: 0% 15% 0% 15%;
@@ -96,7 +79,6 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
     align-items: bottom;
     justify-content: end;
     padding-bottom: 5%;
-
   `;
 
   const MostRecentCaption = styled(Title)`
@@ -110,7 +92,7 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
   const Wrapper = styled.div`
     position: relative;
     height: 100%;
-  `
+  `;
   const SlideWrapper = styled.div`
     position: absolute;
     z-index: 4;
@@ -118,19 +100,22 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
     display: flex;
     background: transparent;
     height: 100%;
-    zIndex: 1;
-  `
+    zindex: 1;
+  `;
   const AcademicTrainingDecoration = styled.div`
     // margin-top: 25%;
-    margin-left: -3%` // because of too big academic training logo (too wide); big screen 35 nit 25
+    margin-left: -3%;
+  `; // because of too big academic training logo (too wide); big screen 35 nit 25
 
   const StyledDivider = styled(Divider)`
-    background: linear-gradient(-90deg, #ffffffd0 0%, transparent 100%) no-repeat
-    padding-box;
+    background: linear-gradient(-90deg, #ffffffd0 0%, transparent 100%)
+      no-repeat padding-box;
     height: 3px;
+    width: auto;
     border-radius: 50px;
     margin-bottom: 20px;
-    float: right;`
+    float: right;
+  `;
   return (
     <Wrapper>
       <SlideWrapper>
@@ -150,24 +135,59 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
           </Title>
         </CaptionFrame>
       </SlideWrapper>
-      <Carousel style={{ display: "flex", flexDirection: "column", background: "pink", height: "calc(100vh - 40px)"  }} autoplay dots={false}>
+      <Carousel
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          background: "pink",
+          height: "calc(100vh - 40px)",
+        }}
+        autoplay
+        dots={false}
+      >
         {photos.map((photo) => {
           return (
             <div key={photo.src}>
-              <div className="content">
+              <div>
                 <CarouselImage alt={photo.alt} src={photo.src} />
               </div>
             </div>
           );
         })}
       </Carousel>
-      {/* <div style={{margin: "3% 15% 3% 15%"}}>
-        <MostRecentCaption level={5}>MOST RECENT</MostRecentCaption>
+      <div style={{ background: "linear-gradient(160deg, #0b1117 0, #0033a0 100%) no-repeat", padding: "3% 7% 0% 7%" }}>
+        <div>
+          <MostRecentCaption level={5}>MOST RECENT</MostRecentCaption>
+        </div>
+        <Row gutter={8}  justify="space-between">
         <StyledDivider />
-      </div> */}
-      <Fragment>
-        <SUGGESTION_BOX />
-      </Fragment>
+          {lectures.map((lecture) => {
+            return (
+              <Col key={lecture.id} >
+                <Link
+                  href={`/lectures/${lecture.lecture_id}`}
+                  key={lecture.lecture_id}
+                >
+                  <Card
+                    style={{ height: 200, width: 300, margin: "8px 0 8px 0" }}
+                    hoverable
+                    className="video-card"
+                    cover={
+                      <AntCardCover
+                        alt="thumbnail"
+                        src={lecture.thumbnail_picture}
+                      />
+                    }
+                  ></Card>
+                </Link>
+              </Col>
+            );
+          })}
+        </Row>
+        <div>
+          <SUGGESTION_BOX />
+        </div>
+      </div>
     </Wrapper>
   );
 };
@@ -188,29 +208,27 @@ export const getServerSideProps: GetServerSideProps<
 export default Home;
 
 const VideoCard = styled(Card)`
-  &&& {
-    border-radius: 5px;
-    height: 200px;
-    object-fit: cover;
-    object-position: 50% 10%;
-    -o-filter: blur(1px);
-    -moz-filter: blur(1px);
-    -ms-filter: blur(1px);
-    filter: brightness(70%);
-    z-index: 2;
+  border-radius: 5px;
+  height: 200px;
+  object-fit: cover;
+  object-position: 50% 10%;
+  -o-filter: blur(1px);
+  -moz-filter: blur(1px);
+  -ms-filter: blur(1px);
+  filter: brightness(70%);
+  z-index: 2;
+  transition: 0.5s;
+  filter: brightness(100%);
+  transition: all 0.5s;
+  background-color: transparent;
+  border-radius: 5px;
+  min-height: 150px;
+  &:hover {
+    filter: drop-shadow(1px 1px 10px #00194e);
+    font-size: 3.8em;
+    transition: 0.3s;
+    max-height: 10px;
     transition: 0.5s;
-    filter: brightness(100%);
-    transition: all 0.5s;
-    background-color: transparent;
-    border-radius: 5px;
-    min-height: 150px;
-    &:hover {
-      filter: drop-shadow(1px 1px 10px #00194e);
-      font-size: 3.8em;
-      transition: 0.3s;
-      max-height: 10px;
-      transition: 0.5s;
-    }
   }
 `;
 const VideoCardContent = styled(Card.Grid)`
@@ -250,7 +268,7 @@ const AntCardCover = styled.img`
   border-radius: 5px;
   height: 200px;
   object-fit: cover;
-  object-position: 50% 10%;
+  object-position: 50% 50%;
   -o-filter: blur(1px);
   -moz-filter: blur(1px);
   -ms-filter: blur(1px);

@@ -18,6 +18,7 @@ const StyledSuggestion = styled.div`
 
 const StyledTitle = styled(Title)`
   text-align: center;
+  background: red;
   font: normal normal normal 50px/50px Abolition;
   letter-spacing: 0.5px;
   color: #fff;
