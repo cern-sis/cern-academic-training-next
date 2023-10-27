@@ -21,7 +21,6 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
   useEffect(() => {
     document.title = "Home | CERN Academic Training";
   }, []);
-  // window.scrollTo(0, 0);
   const AcademicTrainingCaption = styled(Link)`
     color: #fff !important;
     font: normal normal normal 14px Abolition;
@@ -51,10 +50,12 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
     margin-top: 0;
     object-fit: cover;
     object-position: 50% 50%;
-    background-repeat: no-repeat;
+    background-repeat: repeat-x;
     opacity: 0.9;
+    height: calc(100vh - 40px);
   }
     `;
+
 
   const CaptionFrame = styled.div`
     margin: 0% 15% 0% 15%;
@@ -100,7 +101,6 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
     display: flex;
     background: transparent;
     height: 100%;
-    zindex: 1;
   `;
   const AcademicTrainingDecoration = styled.div`
     // margin-top: 25%;
@@ -130,7 +130,7 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
           </AcademicTrainingDecoration>
           <Title type="warning">
             <AcademicTrainingCaption href="/">
-              ACADEMIC TRAINING{" "}
+              ACADEMIC TRAINING!{" "}
             </AcademicTrainingCaption>
           </Title>
         </CaptionFrame>
@@ -138,24 +138,17 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
       <Carousel
         style={{
           display: "flex",
-          flexDirection: "column",
-          background: "pink",
-          height: "calc(100vh - 40px)",
         }}
         autoplay
         dots={false}
       >
         {photos.map((photo) => {
           return (
-            <div key={photo.src}>
-              <div>
-                <CarouselImage alt={photo.alt} src={photo.src} />
-              </div>
-            </div>
+                <CarouselImage alt={photo.alt} src={photo.src} key={photo.src}/>
           );
         })}
       </Carousel>
-      <div style={{ background: "linear-gradient(160deg, #0b1117 0, #0033a0 100%) no-repeat", padding: "3% 7% 0% 7%" }}>
+      <div style={{position: "absolute", background: "linear-gradient(160deg, #0b1117 0, #0033a0 100%) no-repeat", padding: "3% 7% 0% 7%" }}>
         <div>
           <MostRecentCaption level={5}>MOST RECENT</MostRecentCaption>
         </div>
