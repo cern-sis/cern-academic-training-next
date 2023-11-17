@@ -1,7 +1,7 @@
 import { LectureProps } from "@/common/interfaces";
 import { GetServerSideProps, NextPage } from "next";
 import { Layout, Typography, Card } from "antd";
-import styled from "styled-components";
+import {InformationContainer, StyledLecture, VideoContainer, VideoDetails} from "../../styled_components/lecture_styled_components"
 import HTMLTagRenderer from "@/components/HTMLTagsRenderer";
 
 const { Title } = Typography;
@@ -10,35 +10,6 @@ export interface PageProps {
   lecture: LectureProps;
 }
 
-const { Content } = Layout;
-
-export const StyledLecture = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const VideoContainer = styled.div`
-  border-radius: 5%;
-  background: linear-gradient(30deg, #0093e9 0, #0033a0 25%, #0b1117 100%)
-    no-repeat padding-box;
-  color: #fff;
-  width: 50vw;
-  display: inline-block;
-  padding: 50px;
-  height: 100%;
-`;
-
-
-const InformationContainer = styled.p`
-  font: normal normal normal 16px/28px Source Sans Pro Regular;
-`;
-
-const VideoDetails = styled(Title)`
-  font: normal normal normal 16px/28px Source Sans Pro Regular;
-  color: #fff !important;
-  opacity: 0.6;
-`;
 
 const Lectures: NextPage<PageProps> = ({ lecture }) => {
   return (

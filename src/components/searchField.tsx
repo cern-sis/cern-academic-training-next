@@ -1,32 +1,32 @@
-import { Form, Input } from "antd";
-import Router from "next/router";
-import styled from "styled-components";
+import React from "react";
+import { Input } from "antd";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
-const { Item } = Form;
+function SearchField() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
 
-const SearchFieldInput = styled(Input)`
-  background: transparent;
-  border-bottom-color: white;
-  border-top-color: none;
-  color: white;
-  height: 40px;
-`;
+  function handleSearch(term: string) {
+    const params = new URLSearchParams(searchParams);
+    if (term) {
+      params.set("search", term);
+    } else {
+      params.delete("search");
+    }
+    replace(`search/${pathname}?${params.toString()}`);
+  }
 
-const SearchFieldForm = styled(Form)`
-  padding-right: 15px;
-  width: 33%;
-`;
-
-export const SearchField = () => {
   return (
-    <SearchFieldForm
-      onFinish={({ searchValue }) =>
-        Router.push(`search?search=${searchValue}?`)
-      }
-    >
-      <Item name="searchValue">
-        <SearchFieldInput id="searchField" placeholder="Search...." />
-      </Item>
-    </SearchFieldForm>
+    <Input
+      placeholder={"Search...."}
+      onKeyPress={(e) => {
+        if (e.key === "Enter") {
+          handleSearch(e.target.value);
+        }
+      }}
+    />
   );
-};
+}
+
+export default SearchField;

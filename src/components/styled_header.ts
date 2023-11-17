@@ -28,7 +28,7 @@ export const StyledHeader = styled.div`
 
     margin-top: -26px;
     position: absolute;
-    z-index: 8;
+    z-index: 3;
     width: 100%;
     background-color: transparent;
     position: -webkit-sticky;
@@ -43,8 +43,13 @@ export const StyledWrapper = styled.div<StyledWrapperProps>`
     position: fixed;
     transition: all 0.2s;
     background: ${props => props.active ? "#191919;" : "transparent"};
-    z-index: 4;
+    z-index: 3;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px 0px;
+    height: 40px;
     padding-top: 40px; /*the same as the heigh of the tool bar*/
 `
 

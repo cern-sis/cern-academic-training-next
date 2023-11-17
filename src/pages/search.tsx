@@ -8,6 +8,7 @@ interface SearchProps{
 }
 
 const Search = ({ lectures, total, searchValue }: SearchProps) => {
+  console.log(searchValue)
   return (
     <div>
       {lectures.map((item, key) => (
