@@ -60,11 +60,11 @@ const Home: NextPage<HomePagePops> = ({ lectures }) => {
           {lectures.map((lecture) => {
             return (
               <Col key={lecture.lecture_id}>
+                {/* Why on going back it does not remove the search? Hiw is search pushed to histir */}
+                {/* maybe router.push(href) */}
                 <Link
                   href={`/lectures/${lecture.lecture_id}`}
                   key={lecture.lecture_id}
-                  passHref
-                  legacyBehavior
                 >
                   <VideoCard
                     hoverable
