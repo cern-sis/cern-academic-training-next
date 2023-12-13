@@ -1,39 +1,38 @@
 import React from "react";
-import { Layout, Typography, Button } from "antd";
-
-const { Header } = Layout;
-const { Title } = Typography;
+import { Button } from "antd";
+import { SignInDirectory, StyledCernButton, StyledCernToolBar, StyledLink, StyledSpan } from "./StyledAppComponents";
 
 function CernToolBar() {
   return (
-    <Header id="cern-toolbar" aria-label="CERN Toolbar">
-      <Title>
-        <Typography.Link href="//home.cern" title="CERN" id="cern-link">
+    <StyledCernToolBar aria-label="CERN Toolbar">
+      <div style={{display: "flex", justifyContent: "space-between"}}>
+        <StyledCernButton type="link">
+        <StyledLink href="//home.cern" title="CERN" id="cern-link">
           CERN
-          <span> Accelerating science</span>
-        </Typography.Link>
-      </Title>
-      <div>
-      <Button id="cern-toolbar-button" type="link">
-        <Typography.Link
+          <StyledSpan>Accelerating science</StyledSpan>
+        </StyledLink>
+        </StyledCernButton>
+      <SignInDirectory>
+      <Button type="link">
+        <StyledLink
           href="/user/login"
           className="cern-account cern-signin cern-single-mobile-signin"
         >
           Sign in
-        </Typography.Link>
+        </StyledLink>
       </Button>
-      <Button id="cern-toolbar-button" type="link">
-        <Typography.Link
+      <Button type="link">
+        <StyledLink
           href="//cern.ch/directory"
           className="cern-directory"
           title="Search CERN resources and browse the directory"
         >
           Directory
-        </Typography.Link>
+        </StyledLink>
       </Button>
+      </SignInDirectory>
       </div>
-
-    </Header>
+    </StyledCernToolBar>
   );
 }
 
